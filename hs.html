@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f2f2f2;
+            color: #333;
+        }
+
+        header {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+            color: #2196F3;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        button {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e88e5;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Simple Expense Tracker</h1>
+    </header>
+    <div class="container">
+        <!-- Expense Input Section -->
+        <div class="section">
+            <h2>Add New Expense</h2>
+            <input type="text" id="expense-name" placeholder="Expense Name">
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+
+        <!-- Expense List Section -->
+        <div class="section">
+            <h2>Expense List</h2>
+            <ul id="expense-list"></ul>
+            <p class="total">Total: $<span id="total-amount">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        let totalAmount = 0;
+
+        function addExpense() {
+            const expenseName = document.getElementById('expense-name').value.trim();
+            const expenseAmount = parseFloat(document.getElementById('expense-amount').value);
+            const expenseList = document.getElementById('expense-list');
+            const totalDisplay = document.getElementById('total-amount');
+
+            if (!expenseName || isNaN(expenseAmount) || expenseAmount <= 0) {
+                alert('Please enter a valid expense name and amount.');
+                return;
+            }
+
+            // Add new expense to the list
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+        <span>${expenseName}: $${expenseAmount.toFixed(2)}</span>
+        <button onclick="deleteExpense(this, ${expenseAmount})">Delete</button>
+      `;
+            expenseList.appendChild(listItem);
+
+            // Update total amount
+            totalAmount += expenseAmount;
+            totalDisplay.textContent = totalAmount.toFixed(2);
+
+            // Clear input fields
+            document.getElementById('expense-name').value = '';
+            document.getElementById('expense-amount').value = '';
+        }
+
+        function deleteExpense(button, amount) {
+            // Remove the expense from the list
+            const listItem = button.parentElement;
+            listItem.remove();
+
+            // Update total amount
+            totalAmount -= amount;
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+        }
+    </script>
+</body>
+
+</html>
