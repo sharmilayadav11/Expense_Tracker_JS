@@ -16,12 +16,12 @@
     </header>
     <div class="container">
         <!-- Expense Input Section -->
-        <h2>Add New Expense</h2>
-        <input type="text" id="expense_name" placeholder="Expense Name">
-        <input type="text" id="quantity" placeholder="Quantity">
-        <input type="text" id="amount" placeholder="Amount">
-
-        <button onclick="addExpense()">Add Expense</button>
+        <div class="section">
+            <h2>Add New Expense</h2>
+            <input type="text" id="expense-name" placeholder="Expense Name">
+            <input type="number" id="expense-amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
 
         <!--Expense List Section-->
         <div class="expense">
@@ -33,7 +33,20 @@
         </div>
 
     </div>
+    <!--//Referencing external javascript file 
+    <script src="script.js"></script>-->
+    <script>
+        let totalAmount = 0;
 
+        function addExpense() {
+            const expenseName = document.getElementById('expense-name').value.trim();
+            const expenseAmount = parseFloat(document.getElementById('expense-amount').value);
+            const expenseList = document.getElementById('expense-list');
+            const totalDisplay = document.getElementById('total-amount');
+
+
+        }
+    </script>
 </body>
 
 </html>
