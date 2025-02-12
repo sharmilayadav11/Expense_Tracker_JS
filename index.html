@@ -58,7 +58,12 @@
                 // Update total amount
                 totalAmount += expenseAmount;
                 totalDisplay.textContent = totalAmount.toFixed(2);
+                // Clear input fields
+                document.getElementById('expense-name').value = '';
+                document.getElementById('expense-amount').value = '';
             }
+        }
+
     </script>
 </body>
 
