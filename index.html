@@ -47,7 +47,12 @@
             if (!expenseName || isNaN(expenseAmount) || expenseAmount <= 0) {
                 alert('Please enter a valid expense name and amount.');
                 return;
-
+                // Add new expense to the list
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+        <span>${expenseName}: $${expenseAmount.toFixed(2)}</span>
+        <button onclick="deleteExpense(this, ${expenseAmount})">Delete</button>
+      `;
             }
     </script>
 </body>
