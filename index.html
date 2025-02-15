@@ -53,6 +53,11 @@
         <span>${expenseName}: $${expenseAmount.toFixed(2)}</span>
         <button onclick="deleteExpense(this, ${expenseAmount})">Delete</button>
       `;
+                expenseList.appendChild(listItem);
+
+                // Update total amount
+                totalAmount += expenseAmount;
+                totalDisplay.textContent = totalAmount.toFixed(2);
             }
     </script>
 </body>
