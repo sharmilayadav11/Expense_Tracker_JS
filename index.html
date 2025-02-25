@@ -62,7 +62,12 @@
                 document.getElementById('expense-name').value = '';
                 document.getElementById('expense-amount').value = '';
             }
-        }
+
+            function deleteExpense(button, amount) {
+                // Remove the expense from the list
+                const listItem = button.parentElement;
+                listItem.remove();
+            }
 
     </script>
 </body>
